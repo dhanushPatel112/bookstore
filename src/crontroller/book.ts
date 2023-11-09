@@ -96,9 +96,14 @@ router.get("/books/:id", async (req: Request, res: Response) => {
 router.put("/books/:id", async (req: Request, res: Response) => {
     try {
         isValidMongooseId(req.params.id)
-        const book: IBook | null = await Book.findByIdAndUpdate(req.params.id, req.body, {
-            new: true
-        })
+        const { title, author, summary }: IBook = req.body
+        const book: IBook | null = await Book.findByIdAndUpdate(
+            req.params.id,
+            { title, author, summary },
+            {
+                new: true
+            }
+        )
         if (!book) {
             return res.status(404).json({ error: "Book not found" })
         }
@@ -120,7 +125,7 @@ router.delete("/books/:id", async (req: Request, res: Response) => {
         if (!book) {
             return res.status(404).json({ error: "Book not found" })
         }
-        res.json(book)
+        return res.json(book)
     } catch (error) {
         if (error instanceof MongooseError) {
             return res.status(500).json({ error: error.message })
