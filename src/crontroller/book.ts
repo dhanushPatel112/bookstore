@@ -60,7 +60,7 @@ router.get("/books", async (req: Request, res: Response) => {
         const totalBooks = await Book.countDocuments(query)
         const books = await Book.find(query).sort(sortOptions).skip(skip).limit(limit)
 
-        res.json({
+        return res.json({
             total: totalBooks,
             page,
             limit,
@@ -107,7 +107,7 @@ router.put("/books/:id", async (req: Request, res: Response) => {
         if (!book) {
             return res.status(404).json({ error: "Book not found" })
         }
-        res.json(book)
+        return res.json(book)
     } catch (error) {
         console.log({ error })
         if (error instanceof MongooseError) {
