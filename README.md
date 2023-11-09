@@ -25,13 +25,17 @@ This is a simple RESTful API for managing books, built using Node.js, Express, a
     git clone https://github.com/yourusername/books-api.git
     ```
 
-2. **Install dependencies:**:
+2. **Set up the env:**:
+
+-   make .env file in root folder and add PORT
+
+3. **Install dependencies:**:
 
     ```bash
     npm install
     ```
 
-3. **Start the server:**:
+4. **Start the server:**:
 
     ```bash
     npm run build && npm run start

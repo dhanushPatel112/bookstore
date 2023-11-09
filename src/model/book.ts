@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose"
 
-// Connect to MongoDB (replace with your database connection URL)
+// Connect to MongoDB
 mongoose.connect("mongodb://localhost/books-api")
 
 // Define the Book schema
@@ -13,10 +13,10 @@ const bookSchema = new Schema<IBook>({
         type: String,
         required: [true, "Author is required"]
     },
-    summary: String // 'summary' is not required
+    summary: String
 })
 
-// Define the Book model
+// Define the Book type
 export interface IBook extends Document {
     title: string
     author: string

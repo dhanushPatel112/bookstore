@@ -4,12 +4,17 @@ import Book, { IBook } from "../model/book"
 
 const router = Router()
 
+/**
+ *  This function will throw error if id passed is not valid and return void otherwise
+ * @param id string to validate if valid mongoose id or not
+ */
 const isValidMongooseId = (id: string) => {
     if (!isValidObjectId(id)) {
         throw Error("Id not valid")
     }
 }
 
+// Create a book
 router.post("/books", async (req: Request, res: Response) => {
     try {
         const { title, author, summary }: IBook = req.body
@@ -20,7 +25,7 @@ router.post("/books", async (req: Request, res: Response) => {
         if (error instanceof MongooseError) {
             return res.status(500).json({ error: error.message })
         }
-        return res.status(500).json({ error: "An error occurred while creating the book." })
+        return res.status(500).json({ error: "An error occurred while creating the book" })
     }
 })
 
@@ -67,7 +72,7 @@ router.get("/books", async (req: Request, res: Response) => {
         if (error instanceof MongooseError) {
             return res.status(500).json({ error: error.message })
         }
-        return res.status(500).json({ error: "An error occurred while retrieving the list of books." })
+        return res.status(500).json({ error: "An error occurred while retrieving the list of books" })
     }
 })
 
@@ -84,7 +89,7 @@ router.get("/books/:id", async (req: Request, res: Response) => {
         if (error instanceof MongooseError) {
             return res.status(500).json({ error: error.message })
         }
-        return res.status(500).json({ error: "An error occurred while retrieving book details." })
+        return res.status(500).json({ error: "An error occurred while retrieving book details" })
     }
 })
 // Update a book's details by its ID
@@ -103,7 +108,7 @@ router.put("/books/:id", async (req: Request, res: Response) => {
         if (error instanceof MongooseError) {
             return res.status(500).json({ error: error.message })
         }
-        return res.status(500).json({ error: "An error occurred while updating book details." })
+        return res.status(500).json({ error: "An error occurred while updating book details" })
     }
 })
 
@@ -120,7 +125,7 @@ router.delete("/books/:id", async (req: Request, res: Response) => {
         if (error instanceof MongooseError) {
             return res.status(500).json({ error: error.message })
         }
-        return res.status(500).json({ error: "An error occurred while deleting the book." })
+        return res.status(500).json({ error: "An error occurred while deleting the book" })
     }
 })
 
