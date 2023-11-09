@@ -1,7 +1,8 @@
 import mongoose, { Schema } from "mongoose"
+import "dotenv/config"
 
 // Connect to MongoDB
-mongoose.connect("mongodb://localhost/books-api")
+mongoose.connect(process.env.MONGO_URI ?? "")
 
 // Define the Book schema
 const bookSchema = new Schema<IBook>({
